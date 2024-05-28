@@ -3,7 +3,7 @@ language: go # or any other language
 env:
   global:
     - COSIGN_KEY="cosign.key"
-    - IMAGE_IDENTIFIER="your-container-image"  # add your actual container image identifier here
+    - IMAGE_IDENTIFIER=test.txt
 
 before_install:
   - curl -LO https://github.com/sigstore/cosign/releases/download/v2.2.2/cosign-linux-amd64
