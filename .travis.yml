@@ -2,9 +2,9 @@ language: generic
 
 env:
   global:
-    - COSIGN_PASSWORD
-    - DOCKER_USERNAME
-    - DOCKER_PASSWORD
+    - $COSIGN_PASSWORD
+    - $DOCKER_USERNAME
+    - $DOCKER_PASSWORD
 
 before_install:
   - curl -LO https://github.com/sigstore/cosign/releases/download/v1.2.0/cosign-linux-amd64
