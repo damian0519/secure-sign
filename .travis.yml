@@ -1,7 +1,7 @@
 language: generic
 
 env:
-  global: IMAGE_NAME=test878/tagname:tagname
+  global: IMAGE_NAME=test878/tagname:latest
 
 before_install:
   - curl -LO https://github.com/sigstore/cosign/releases/download/v1.2.0/cosign-linux-amd64
