@@ -3,18 +3,14 @@ language: go # or any other language
 env:
   global:
     - COSIGN_KEY="cosign.key"
-    - IMAGE_IDENTIFIER="test.txt"
-    - COSIGN_PASSWORD=your_cosign_password  # Add this line if a passphrase is needed
 
 before_install:
   - curl -LO https://github.com/sigstore/cosign/releases/download/v2.2.2/cosign-linux-amd64
   - sudo mv cosign-linux-amd64 /usr/local/bin/cosign
   - sudo chmod +x /usr/local/bin/cosign
-
-before_script:
   - echo "$SSH_KEY_FOR_SIGNING" | base64 --decode > $COSIGN_KEY
   - chmod 600 $COSIGN_KEY
 
 script:
   - echo "Build and test commands would go here if there were any"
-  - cosign sign --key $COSIGN_KEY $IMAGE_IDENTIFIER
+  - yes | cosign sign-blob --key $COSIGN_KEY test.txt
