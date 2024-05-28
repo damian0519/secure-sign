@@ -1,22 +1,19 @@
-os: linux
+language: go # or any other language
 
-language: java
-services:
-  - docker
-cache: bundler
-dist: focal
+env:
+  global:
+    - COSIGN_KEY="cosign.key"
+    - IMAGE_IDENTIFIER="your-container-image"  # add your actual container image identifier here
 
-install: skip
+before_install:
+  - curl -LO https://github.com/sigstore/cosign/releases/download/v2.2.2/cosign-linux-amd64
+  - sudo mv cosign-linux-amd64 /usr/local/bin/cosign
+  - sudo chmod +x /usr/local/bin/cosign
 
-jobs:
-  include:
-    - name: failing
-      script: true
+before_script:
+  - echo "$SSH_KEY_FOR_SIGNING" | base64 --decode > $COSIGN_KEY
+  - chmod 600 $COSIGN_KEY
 
-after_success:
-  - echo done
-  - echo $TRAVIS_TEST_RESULT
-  - echo $SSH_KEY_FOR_SIGNING
-after_failure:
-  - echo failed
-  - echo $TRAVIS_TEST_RESULT
+script:
+  - echo "Build and test commands would go here if there were any"
+  - cosign sign --key $COSIGN_KEY $IMAGE_IDENTIFIER
