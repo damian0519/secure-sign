@@ -12,6 +12,7 @@ before_install:
 before_script:
   - echo "$SSH_KEY_FOR_SIGNING" | base64 --decode > cosign.key
   - chmod 600 cosign.key
+  - ls -l cosign.key
   - cat cosign.key
 
 script:
