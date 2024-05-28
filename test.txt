@@ -1,1 +1,1 @@
-test
+echo "This is a test artifact for Cosign signing." > test.txt
