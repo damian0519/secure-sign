@@ -1,4 +1,4 @@
-language: go # or any other language
+language: go
 
 env:
   global:
