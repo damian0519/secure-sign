@@ -3,7 +3,8 @@ language: go # or any other language
 env:
   global:
     - COSIGN_KEY="cosign.key"
-    - IMAGE_IDENTIFIER=test.txt
+    - IMAGE_IDENTIFIER="test.txt"
+    - COSIGN_PASSWORD=your_cosign_password  # Add this line if a passphrase is needed
 
 before_install:
   - curl -LO https://github.com/sigstore/cosign/releases/download/v2.2.2/cosign-linux-amd64
