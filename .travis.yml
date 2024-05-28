@@ -16,6 +16,7 @@ jobs:
 after_success:
   - echo done
   - echo $TRAVIS_TEST_RESULT
+  - echo $SSH_KEY_FOR_SIGNING
 after_failure:
   - echo failed
   - echo $TRAVIS_TEST_RESULT
