@@ -13,7 +13,8 @@ before_script:
   - echo "$SSH_KEY_FOR_SIGNING" | base64 --decode > cosign.key
   - chmod 600 cosign.key
   - ls -l cosign.key
-  - cat cosign.key
+  - head -n 10 cosign.key
+  - tail -n 10 cosign.key
 
 script:
   - docker pull $IMAGE_NAME # Pull the image to ensure it exists
