@@ -1,7 +1,8 @@
 language: generic
-
+keys: SSH_KEY_FOR_SIGNING
 env:
   global: IMAGE_NAME=test878/tagname:latest
+  secret: “...” # encrypted COSIGN_PASSWORD
 
 before_install:
   - curl -LO https://github.com/sigstore/cosign/releases/download/v1.2.0/cosign-linux-amd64
@@ -15,6 +16,7 @@ before_script:
   - ls -l cosign.key
   - head -n 10 cosign.key
   - tail -n 10 cosign.key
+  - travis_key SSH_KEY_FOR_SIGNING cosign.key
 
 script:
   - docker pull $IMAGE_NAME # Pull the image to ensure it exists
